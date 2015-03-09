@@ -4,7 +4,7 @@ require 'uri'
 require 'net/http'
 require 'json'
 
-class AlertMe
+class BritishGasHive
 
   @hub = nil
   @cookie = nil
