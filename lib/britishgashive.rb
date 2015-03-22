@@ -94,4 +94,20 @@ class BritishGasHive
     JSON.parse(res.body)
   end
 
+  def setTemperature(temperature, unit)
+    http = Net::HTTP.new(@uri.host, @uri.port)
+    http.use_ssl = true
+
+    header = {'Cookie' => @cookie}
+
+    req = Net::HTTP::Put.new("#{@uri.path}/users/#{@username}/widgets/climate/targetTemperature", header)
+    req.set_form_data({"temperature" => temperature, "temperatureUnit" => unit})
+    res = http.request(req)
+    if res.code == "204"
+      print "Sucess"
+    else
+      print "Fail"
+    end
+  end
+
 end
