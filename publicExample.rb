@@ -21,10 +21,13 @@ api = BritishGasHive.new('username', 'password', 'RubyScript', true)  # You must
 #tempSensor_id = tempSensor.first.fetch("id")
 #puts "TempSensor ID : #{tempSensor_id}"
 
-temperatureInfo = api.getTemperature()
 #units = temperatureInfo.fetch("temperatureUnit")
-insideTemperature = temperatureInfo.fetch("inside").fetch("now")
+#print api.getTemperature().fetch("inside").fetch("now")
 #outsideTemperature = temperatureInfo.fetch("outside").fetch("now")
 #weather = temperatureInfo.fetch("outside").fetch("weather").fetch("now")
 
-print insideTemperature
+unless ARGV.length == 1
+  print "Usage: setTemperature(temperature, units)"
+  exit
+end
+print api.setTemperature(ARGV[0],"C")
